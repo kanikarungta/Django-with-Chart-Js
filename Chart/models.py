@@ -40,7 +40,7 @@ class User(AbstractBaseUser):
 	username = None
 	email = models.EmailField(verbose_name = "Email", max_length = 100, unique = True )
 	name = models.CharField(verbose_name = "Name", max_length = 50)
-	mobile = models.BigIntegerField(max_length=14, unique= True, blank = True, null = True, editable =True)
+	mobile = models.BigIntegerField(unique= True, blank = True, null = True, editable =True)
 	is_admin = models.BooleanField(default = False)
 	is_staff = models.BooleanField(default = False)
 	is_active = models.BooleanField(default = True)
