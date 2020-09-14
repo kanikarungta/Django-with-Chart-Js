@@ -68,6 +68,8 @@ TEMPLATES = [
     },
 ]
 
+AUTH_USER_MODEL = 'Chart.User'
+
 WSGI_APPLICATION = 'Chartjs.wsgi.application'
 
 
