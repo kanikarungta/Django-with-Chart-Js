@@ -5,7 +5,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 # Register your models here.
 class CustomUserAdmin(BaseUserAdmin):
     model = User
-    list_display = ('email', 'name', )
+    list_display = ('email', 'name', 'user_type' )
     search_fields = ('name', )
     ordering = ('email',)
     list_filter = ('email',)
