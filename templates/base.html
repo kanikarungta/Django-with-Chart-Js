@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -18,17 +19,30 @@
     table {
       font-family: arial, sans-serif;
       border-collapse: collapse;
-      width: 40%;
+      width: 45%;
+      border-spacing: 0;
+      border: 0; margin:0px;
+    }
+    tr:first-child td, tr:first-child th {
+    border-top-left-radius: 8px; border-top-right-radius: 8px;
+    }
+
+    tr:last-child td {
+    border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;
     }
 
     td, th {
-      border: 1px solid #dddddd;
+      /*border: 1px solid #dddddd;*/
       text-align: left;
       padding: 6px;
+      border-bottom-width: 0px;
     }
 
     tr:nth-child(even) {
-      background-color: #dddddd;
+      background-color: white;
+    }
+    tr:nth-child(odd) {
+      background-color: black;
     }
     div.container1 {
       width:1000px;
@@ -37,7 +51,7 @@
     }
     </style>
   </head>
-  <body>
+  <body style="background-image: url({% static 'img.jpg' %}); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
     <script>
       $(document).ready(function(){
       var ctx = document.getElementById('myChart').getContext('2d');
@@ -68,7 +82,7 @@
               }]
           },
           options: {
-              responsive: true,
+              /*responsive: true,*/
               scales: {
                   yAxes: [{
                       ticks: {
@@ -85,48 +99,49 @@
     <form method="post">
       {% csrf_token %}
       <br>
-      <table>
-        <tr>
-          <td><b>Name:</b></td>
-          <td><input type="text" name="name" size="40"></td>
-        </tr>
-        <tr>
-          <td><b>Email:</b></td>
-          <td><input type="text" name="email" size="40"></td>
-        </tr>
-        <tr>
-          <td><b>Password:</b></td>
-          <td><input type="password" name="password1" size="40"></td>
-        </tr>
-        <tr>
-          <td><b>Confirm Password:</b></td>
-          <td><input type="password" name="password2" size="40"></td>
-        </tr>
-        <tr>
-          <td><b>Mobile:</b></td>
-          <td><input type="number" name="mobile" size="40"></td>
-        </tr>
-        <tr>
-          <td><b>User Type:</b></td>
-          <td><select name="user_type" id="id_user_type" style="width: 150px">
-              {% for rol in roles %}
-                <option value="{{ rol.id }}">{{ rol.usertype }}</option>
-              {% endfor %}
-              </select></td>
-        </tr>
-      </table><br>
-        <input type="submit" value="Submit">
+        <table>
+          <tr>
+            <td style="color: white"><b>Name:</b></td>
+            <td><input type="text" name="name" size="40"></td>
+          </tr>
+          <tr>
+            <td><b>Email:</b></td>
+            <td><input type="text" name="email" size="40"></td>
+          </tr>
+          <tr>
+            <td style="color: white"><b>Password:</b></td>
+            <td><input type="password" name="password1" size="40"></td>
+          </tr>
+          <tr>
+            <td><b>Confirm Password:</b></td>
+            <td><input type="password" name="password2" size="40"></td>
+          </tr>
+          <tr>
+            <td style="color: white"><b>Mobile:</b></td>
+            <td><input type="number" name="mobile" size="40"></td>
+          </tr>
+          <tr>
+            <td><b>User Type:</b></td>
+            <td><select name="user_type" id="id_user_type" style="width: 150px">
+                {% for rol in roles %}
+                  <option value="{{ rol.id }}">{{ rol.usertype }}</option>
+                {% endfor %}
+                </select></td>
+          </tr>
+        </table>
+      <br>
+      <input type="submit" value="Submit">
     </form>  
     {% for msg in messages %}
       {{msg}}
     {% endfor %} 
     <br>
     <div class="container1">
-    <canvas id="myChart" width="400" height="100"></canvas></div>
-   </div>
- </center>
- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+      <canvas id="myChart" width="400" height="100"></canvas></div>
+    </div>
+  </center>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
   </body>
 </html>
